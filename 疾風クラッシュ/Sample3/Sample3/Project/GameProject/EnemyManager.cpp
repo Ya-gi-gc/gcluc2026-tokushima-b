@@ -1,6 +1,7 @@
 #include "EnemyManager.h"
 #include "EnemyBase.h"
 #include "Slime.h"
+#include"maruta.h"
 
 #define SPAWN_COUNT 10			// “G¶¬”
 #define SPAWN_INTERVAL 0.25f		// “G‚ğ¶¬‚·‚éŠÔŠuŠÔ

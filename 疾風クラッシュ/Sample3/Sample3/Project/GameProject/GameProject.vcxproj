@@ -17,6 +17,7 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="maruta.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Slime.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="maruta.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Slime.h" />
