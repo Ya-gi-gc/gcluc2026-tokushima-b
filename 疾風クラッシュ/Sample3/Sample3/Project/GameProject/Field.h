@@ -17,4 +17,7 @@ public:
 
 protected:
 	CImage* mp_fieldImg;	// フィールドの画像
+
+	float m_scrollx;//スクロールの向き
+	float m_scrollspeed;//スクロール速度
 };

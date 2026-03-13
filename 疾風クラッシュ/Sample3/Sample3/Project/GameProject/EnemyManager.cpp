@@ -1,9 +1,9 @@
 #include "EnemyManager.h"
 #include "EnemyBase.h"
 #include "Slime.h"
-#include"maruta.h"
+#include "Log.h"
 
-#define SPAWN_COUNT 10			// 敵生成数
+#define SPAWN_COUNT 30			// 敵生成数
 #define SPAWN_INTERVAL 0.25f		// 敵を生成する間隔時間
 #define SPAWN_RANGE_MIN_X (SCREEN_WIDTH - 90)	// X軸の敵生成範囲の最小値
 #define SPAWN_RANGE_MAX_X (SCREEN_WIDTH - 100)	// X軸の敵生成範囲の最大値
@@ -79,33 +79,42 @@ EnemyBase* EnemyManager::GetNearEnemy(const CVector3D& pos, const CVector3D& ran
 // 更新
 void EnemyManager::Update()
 {
-	// 現在の敵の数が、敵生成数を超えてなければ、
+	// 経過時間を加算
+	m_elapsedTime += CFPS::GetDeltaTime();
+
+	// 現在の敵の数が生成数未満なら
 	if (m_enemies.size() < SPAWN_COUNT)
 	{
-		// 経過時間が生成間隔の時間を超えたら
+		// 生成間隔を超えたら
 		if (m_elapsedTime >= SPAWN_INTERVAL)
 		{
-			// スライムの種類をランダムで決定
-			SlimeType type = (SlimeType)Utility::Rand(0, (int)SlimeType::Num - 1);
-
-			// スライムの位置をランダムで決定
+			// 位置をランダムで決定
 			CVector3D pos;
 			pos.x = Utility::Rand(SPAWN_RANGE_MIN_X, SPAWN_RANGE_MAX_X);
 			pos.y = 0.0f;
 			pos.z = Utility::Rand(SPAWN_RANGE_MIN_Z, SPAWN_RANGE_MAX_Z);
 
-			// スライムを生成
-			new Slime(type, pos);
+			// 敵タイプをランダム決定
+			int enemyType = Utility::Rand(0, 1);
 
-			m_elapsedTime -= SPAWN_INTERVAL;
+			if (enemyType == 0)
+			{
+				// スライム生成
+				SlimeType type = (SlimeType)Utility::Rand(0, (int)SlimeType::Num - 1);
+				new Slime(type, pos);
+			}
+			else
+			{
+				// 丸太生成
+				new Log(pos);
+			}
+
+			// タイマーリセット
+			m_elapsedTime = 0.0f;
 		}
-		// 経過時間を加算
-		m_elapsedTime += CFPS::GetDeltaTime();
 	}
-	// 敵生成数に達している状態
 	else
 	{
 		m_elapsedTime = 0.0f;
 	}
-
 }

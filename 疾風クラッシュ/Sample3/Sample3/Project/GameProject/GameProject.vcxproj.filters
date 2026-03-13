@@ -13,9 +13,7 @@
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="maruta.cpp">
-      <Filter>追加</Filter>
-    </ClCompile>
+    <ClCompile Include="Log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Global.h" />
@@ -30,16 +28,11 @@
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="maruta.h">
-      <Filter>追加</Filter>
-    </ClInclude>
+    <ClInclude Include="Log.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="タイトル">
       <UniqueIdentifier>{9e888a0b-89f3-46a7-ab08-581b385f9e42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="追加">
-      <UniqueIdentifier>{f9de9163-5096-47b2-93f7-0343659a2d64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -99,7 +99,8 @@ void Player::ChangeState(EState state)
 // 移動処理の更新
 bool Player::UpdateMove()
 {
-	bool isMove = false;
+	//常時走りアニメーション
+	bool isMove = true;
 	
 
 		// 左キーを押している間
@@ -119,14 +120,14 @@ bool Player::UpdateMove()
 			isMove = true;
 		}
 		*/
-		// [A]キーを押している間
+		// [W]キーを押している間
 		if (HOLD(CInput::eButton14))
 		{
 			// 奥方向へ移動
 			m_pos.z -= MOVE_SPEED_Z;
 			isMove = true;
 		}
-		// [D]キーを押している間
+		// [S]キーを押している間
 		else if (HOLD(CInput::eButton15))
 		{
 			// 手前方向へ移動
@@ -145,13 +146,11 @@ void Player::StateIdle()
 {
 	// 移動処理
 	bool isMove = UpdateMove();
-
 	// 移動状態に合わせて、アニメーションを切り替え
 	EAnimType anim = isMove ? EAnimType::Move : EAnimType::Idle;
 	mp_image->ChangeAnimation((int)anim);
-
-	// [スペース]キーでジャンプ状態へ移行
-	if (PUSH(CInput::eButton5))
+	// [D]キーでジャンプ状態へ移行
+	if (PUSH(CInput::eButton16))
 	{
 		ChangeState(EState::Jump);
 	}
