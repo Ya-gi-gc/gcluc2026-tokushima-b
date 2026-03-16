@@ -6,8 +6,8 @@
 
 extern Field* g_field;
 
-#define CHIP_SIZE 384		// 1コマのサイズ
-#define CENTER_POS CVector2D(192.0f, 328.0f)	// 中心座標
+#define CHIP_SIZE 384	// 1コマのサイズ
+#define CENTER_POS CVector2D(192.0f, 320.0f)	// 中心座標
 #define MOVE_SPEED_X 5.0f	// 横方向の移動速度
 #define MOVE_SPEED_Z 10.0f	// 奥方向の移動速度
 #define JUMP_SPEED 17.4f	// ジャンプ速度
@@ -28,7 +28,7 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 		new TexAnim[6]
 		{
 			{0, 6}, {1, 6}, {2, 6},
-			{3, 6}, {4, 6}, {5, 6},
+			{3, 6}, {4, 6}, {5, 6}
 		},
 		6
 	},
@@ -36,8 +36,8 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 	{
 		new TexAnim[6]
 		{
-			{6, 6}, {7, 6}, {8, 6},
-			{9, 6}, {10, 6}, {11, 6},
+			{0, 6}, {1, 6}, {2, 6},
+			{5, 6}, {4, 6}, {5, 6}
 		},
 		6
 	},
@@ -55,10 +55,10 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 	{
 		new TexAnim[4]
 		{
-			{18, 6},
-			{19, 6},
-			{20, 6},
-			{21, 6},
+			{12, 6},
+			{13, 6},
+			{14, 6},
+			{15, 6},
 		},
 		3
 	},
@@ -77,7 +77,7 @@ Player::Player(const CVector3D& pos)
 	// プレイヤーの画像を読み込み
 	mp_image = CImage::CreateImage
 	(
-		"player.png",	// 画像ファイルのパス
+		"player3.png",	// 画像ファイルのパス
 		ANIM_DATA,		// アニメーションのデータ
 		CHIP_SIZE, CHIP_SIZE	// 1コマの幅と高さ
 	);
