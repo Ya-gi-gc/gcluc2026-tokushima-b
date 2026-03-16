@@ -73,7 +73,7 @@ void GameResultTask::Update()
 
             // プレイヤー生成
             g_player = new Player(
-                CVector3D(SCREEN_WIDTH * 0.5f, 0.0f, 0.0f));
+                CVector3D(130.0f, 0.0f, 150.0f));
 
             g_player->SetField(g_field);
 

@@ -6,7 +6,7 @@
 extern bool g_isGameResult;
 
 #define SPAWN_COUNT 30			// “G¶¬”
-#define SPAWN_INTERVAL 1.5f		// “G‚ð¶¬‚·‚éŠÔŠuŽžŠÔ
+#define SPAWN_INTERVAL 1.25f		// “G‚ð¶¬‚·‚éŠÔŠuŽžŠÔ
 #define SPAWN_RANGE_MIN_X (SCREEN_WIDTH - 90)	// XŽ²‚Ì“G¶¬”ÍˆÍ‚ÌÅ¬’l
 #define SPAWN_RANGE_MAX_X (SCREEN_WIDTH - 100)	// XŽ²‚Ì“G¶¬”ÍˆÍ‚ÌÅ‘å’l
 #define SPAWN_RANGE_MIN_Z -80	// ZŽ²‚Ì“G¶¬”ÍˆÍ‚ÌÅ¬’l

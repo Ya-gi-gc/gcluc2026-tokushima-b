@@ -14,6 +14,7 @@ Log::Log(const CVector3D& pos)
 
     mp_image = CImage::CreateImage("log.png");
     mp_image -> SetCenter(CENTER_POS);
+    //“–‚½‚è”»’è@c’·‚È‚Ì‚Åz‚Í‘å‚«‚­‚µ‚Ä‚Ü‚·
     m_hitRange = CVector3D(25, 0, 800000);
 }
 

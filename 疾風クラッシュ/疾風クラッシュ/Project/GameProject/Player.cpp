@@ -13,7 +13,8 @@ extern Field* g_field;
 #define JUMP_SPEED 17.4f	// ジャンプ速度
 #define GRAVITY -0.85f		// 重力
 #define ATTACK_INDEX 2		// 攻撃が発生するアニメーションの番号
-#define ATTACK_RANGE CVector3D(300.0f, 10.0f, 50.0f)	// 攻撃範囲
+#define ATTACK_RANGE CVector3D(100.0f, 10.0f, 25.0f)	// 攻撃範囲
+float  COOL_TIME = 0.0f;  //攻撃クールタイム 
 
 #define SPAWN_RANGE_MIN_Z -80	// Z軸のプレイヤーの最小値
 #define SPAWN_RANGE_MAX_Z 160	// Z軸のプレイヤーの最大値
@@ -160,10 +161,12 @@ void Player::StateIdle()
 	{
 		ChangeState(EState::Jump);
 	}
-	// [左クリック]キーで攻撃状態へ移行
-	else if (PUSH(CInput::eMouseL))
+	// クールタイムが0以下かつ[左クリック]キーで攻撃状態へ移行
+	else if (COOL_TIME <= 0 && PUSH(CInput::eMouseL))
 	{
 		ChangeState(EState::Attack);
+		//クールタイムの設定
+		COOL_TIME = 60.0f;
 	}
 }
 
@@ -241,6 +244,8 @@ void Player::StateDeath()
 // 更新処理
 void Player::Update()
 {
+	COOL_TIME--;
+
 	// ① 無敵時間減少
 	if (m_invincible > 0)
 	{
