@@ -10,8 +10,8 @@ extern Field* g_field;
 #define CENTER_POS CVector2D(192.0f, 328.0f)	// 中心座標
 #define MOVE_SPEED_X 5.0f	// 横方向の移動速度
 #define MOVE_SPEED_Z 10.0f	// 奥方向の移動速度
-#define JUMP_SPEED 15.0f	// ジャンプ速度
-#define GRAVITY -1.0f		// 重力
+#define JUMP_SPEED 17.4f	// ジャンプ速度
+#define GRAVITY -0.85f		// 重力
 #define ATTACK_INDEX 2		// 攻撃が発生するアニメーションの番号
 #define ATTACK_RANGE CVector3D(300.0f, 10.0f, 50.0f)	// 攻撃範囲
 
@@ -180,6 +180,7 @@ void Player::StateJump()
 			m_moveSpeedY = JUMP_SPEED;
 			m_isGrounded = false;
 			m_stateStep++;
+
 			break;
 		// ステップ1：ジャンプ終了
 		case 1:
@@ -258,7 +259,7 @@ void Player::Update()
 	// ② 敵との当たり判定
 	EnemyBase* enemy = EnemyManager::Instance()->GetNearEnemy(m_pos, CVector3D(50, 50, 50));
 
-	if (enemy != nullptr && m_invincible <= 0)
+	if (enemy != nullptr && m_invincible <= 0 && m_state != EState::Jump)
 	{
 		m_life--;          // ライフ減
 		m_invincible = 2.0f; // 無敵時間2秒

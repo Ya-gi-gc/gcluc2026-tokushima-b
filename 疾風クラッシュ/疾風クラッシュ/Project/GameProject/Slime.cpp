@@ -36,7 +36,7 @@ Slime::Slime(SlimeType type, const CVector3D& pos)
 	m_hp = 1;
 
 	//
-	m_hitRange = CVector3D(40, 40, 40);
+	m_hitRange = CVector3D(30, 30, 30);
 
 	// ƒXƒ‰ƒCƒ€‚Ì‰æ‘œ‚ğ“Ç‚İ‚İ
 	std::string imagePath;
