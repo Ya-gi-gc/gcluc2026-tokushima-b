@@ -3,12 +3,16 @@
 #include "Slime.h"
 #include "Log.h"
 
+extern bool g_isGameResult;
+
 #define SPAWN_COUNT 30			// “G¶¬”
-#define SPAWN_INTERVAL 0.25f		// “G‚ğ¶¬‚·‚éŠÔŠuŠÔ
+#define SPAWN_INTERVAL 1.5f		// “G‚ğ¶¬‚·‚éŠÔŠuŠÔ
 #define SPAWN_RANGE_MIN_X (SCREEN_WIDTH - 90)	// X²‚Ì“G¶¬”ÍˆÍ‚ÌÅ¬’l
 #define SPAWN_RANGE_MAX_X (SCREEN_WIDTH - 100)	// X²‚Ì“G¶¬”ÍˆÍ‚ÌÅ‘å’l
 #define SPAWN_RANGE_MIN_Z -80	// Z²‚Ì“G¶¬”ÍˆÍ‚ÌÅ¬’l
 #define SPAWN_RANGE_MAX_Z 160	// Z²‚Ì“G¶¬”ÍˆÍ‚ÌÅ‘å’l
+#define SPAWN_RANGE_LOG_Z -115  //ŠÛ‘¾‚Ì¶¬”ÍˆÍŒÅ’è
+
 EnemyManager* EnemyManager::ms_instance = nullptr;
 
 // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
@@ -61,9 +65,10 @@ EnemyBase* EnemyManager::GetNearEnemy(const CVector3D& pos, const CVector3D& ran
 	{
 		// Še²‚Ì‹——£‚ğ‹‚ß‚ÄA”ÍˆÍŠO‚Å‚ ‚ê‚ÎƒXƒ‹[
 		CVector3D enemyPos = enemy->GetPos();
-		if (abs(pos.x - enemyPos.x) > range.x) continue;
-		if (abs(pos.y - enemyPos.y) > range.y) continue;
-		if (abs(pos.z - enemyPos.z) > range.z) continue;
+		CVector3D hit = enemy->GetHitRange();
+		if (abs(pos.x - enemyPos.x) > range.x + hit.x) continue;
+		if (abs(pos.y - enemyPos.y) > range.y + hit.y) continue;
+		if (abs(pos.z - enemyPos.z) > range.z + hit.z) continue;
 
 		// Œ»İ‚Ìˆê”Ô‹ß‚¢“G‚æ‚è‹ß‚¢ê‡‚ÍAˆê”Ô‹ß‚¢“G‚Éİ’è
 		float dist = (pos - enemyPos).Length();
@@ -79,6 +84,10 @@ EnemyBase* EnemyManager::GetNearEnemy(const CVector3D& pos, const CVector3D& ran
 // XV
 void EnemyManager::Update()
 {
+
+	if (g_isGameResult)
+		return;
+
 	// Œo‰ßŠÔ‚ğ‰ÁZ
 	m_elapsedTime += CFPS::GetDeltaTime();
 
@@ -105,6 +114,7 @@ void EnemyManager::Update()
 			}
 			else
 			{
+				pos.z = SPAWN_RANGE_LOG_Z;
 				// ŠÛ‘¾¶¬
 				new Log(pos);
 			}
@@ -117,4 +127,23 @@ void EnemyManager::Update()
 	{
 		m_elapsedTime = 0.0f;
 	}
+}
+
+void EnemyManager:: Destroy()
+{
+	if (ms_instance != nullptr)
+	{
+		delete ms_instance;
+		ms_instance = nullptr;
+	}
+}
+
+void EnemyManager::KillAllEnemies()
+{
+	for (auto enemy : m_enemies) 
+	{
+		enemy->Kill();
+	}
+
+	m_enemies.clear();
 }

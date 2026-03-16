@@ -11,5 +11,10 @@ public:
 	// デストラクタ
 	virtual ~EnemyBase();
 
-private:
+	//当たり判定サイズ
+	const CVector3D& GetHitRange() const { return m_hitRange; }
+protected:
+
+	CVector3D m_hitRange;
+
 };

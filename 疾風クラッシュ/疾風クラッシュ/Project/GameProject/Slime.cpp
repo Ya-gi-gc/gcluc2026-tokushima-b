@@ -1,4 +1,5 @@
 #include "Slime.h"
+#include "EnemyManager.h"
 
 #define CHIP_SIZE 256		// 1コマのサイズ
 #define CENTER_POS CVector2D(128.0f, 184.0f)	// 中心座標
@@ -34,6 +35,9 @@ Slime::Slime(SlimeType type, const CVector3D& pos)
 {
 	m_hp = 1;
 
+	//
+	m_hitRange = CVector3D(40, 40, 40);
+
 	// スライムの画像を読み込み
 	std::string imagePath;
 	if (m_type == SlimeType::Blue) imagePath = "slime_a.png";
@@ -62,6 +66,9 @@ void Slime::Death()
 {
 	// 死亡状態へ移行
 	ChangeState(EState::Death);
+	//敵マネージャーから削除
+	EnemyManager::Instance()->Remove(this);
+
 }
 
 // 現在の状態を切り替え
@@ -90,6 +97,7 @@ void Slime::StateDeath()
 		case 0:
 			mp_image->ChangeAnimation((int)EAnimType::Death, false);
 			m_stateStep++;
+
 			break;
 		// ステップ1：アニメーション終了待ち
 		case 1:

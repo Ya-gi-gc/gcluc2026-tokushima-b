@@ -2,6 +2,9 @@
 #include "EnemyManager.h"
 #include "EnemyBase.h"
 #include "GameResultTask.h"
+#include "Field.h"
+
+extern Field* g_field;
 
 #define CHIP_SIZE 384		// 1コマのサイズ
 #define CENTER_POS CVector2D(192.0f, 328.0f)	// 中心座標
@@ -15,6 +18,7 @@
 #define SPAWN_RANGE_MIN_Z -80	// Z軸のプレイヤーの最小値
 #define SPAWN_RANGE_MAX_Z 160	// Z軸のプレイヤーの最大値
 
+bool g_isGameResult = false;
 
 // プレイヤーのアニメーションデータの前宣言
 TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
@@ -122,15 +126,15 @@ bool Player::UpdateMove()
 			isMove = true;
 		}
 		*/
-		// [W]キーを押している間
+		// [A]キーを押している間
 		if (HOLD(CInput::eButton14))
 		{
 			// 奥方向へ移動
 			m_pos.z -= MOVE_SPEED_Z;
 			isMove = true;
 		}
-		// [S]キーを押している間
-		else if (HOLD(CInput::eButton15))
+		// []キーを押している間
+		else if (HOLD(CInput::eButton16))
 		{
 			// 手前方向へ移動
 			m_pos.z += MOVE_SPEED_Z;
@@ -151,8 +155,8 @@ void Player::StateIdle()
 	// 移動状態に合わせて、アニメーションを切り替え
 	EAnimType anim = isMove ? EAnimType::Move : EAnimType::Idle;
 	mp_image->ChangeAnimation((int)anim);
-	// [D]キーでジャンプ状態へ移行
-	if (PUSH(CInput::eButton16))
+	// [スペース]キーでジャンプ状態へ移行
+	if (PUSH(CInput::eButton5))
 	{
 		ChangeState(EState::Jump);
 	}
@@ -264,6 +268,14 @@ void Player::Update()
 		{
 			ChangeState(EState::Death); // ライフ0で死亡
 			
+			g_isGameResult = true;
+
+			EnemyManager::Instance()->KillAllEnemies();
+			EnemyManager::Destroy();
+
+			delete g_field;
+			g_field = nullptr;
+
 			new GameResultTask();  // ← リザルト画面生成
 			Kill();                // ← プレイヤー削除
 			return;

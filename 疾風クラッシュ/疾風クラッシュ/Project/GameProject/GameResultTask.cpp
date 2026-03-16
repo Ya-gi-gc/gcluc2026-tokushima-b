@@ -1,63 +1,94 @@
-#include "GameResultTask.h"
+﻿#include "GameResultTask.h"
 #include "DebugPrint.h"
 #include "Field.h"
 #include "Player.h"
 #include "EnemyManager.h"
-#include "Timer.h"
 #include "TitleTask.h"
 
 extern Field* g_field;
 extern Player* g_player;
 
+extern bool g_isGameResult;
+
 GameResultTask::GameResultTask()
     : Task(0)
 {
     mp_result = CImage::CreateImage("Clear.png");
-    mp_playAgain = CImage::CreateImage("Over.png");
-    mp_titleBtn = CImage::CreateImage("title.png");
 
-    mp_playAgain->SetPos(600, 400);
-    mp_titleBtn->SetPos(600, 500);
+    // 敵削除
+    if (EnemyManager::Instance() != nullptr)
+    {
+        EnemyManager::Instance()->KillAllEnemies();
+        EnemyManager::Destroy();
+    }
 
-    //int elapsed = Timer::GetElapsed();
-    //m_clearTime = 60 - elapsed;
+    mp_restart = CImage::CreateImage("gamestart.png");
+    mp_exit = CImage::CreateImage("exitgame.png");
 
-    if (m_clearTime < 0)
-        m_clearTime = 0;
+    mp_marker = CImage::CreateImage("テッポウウオ.png");
+
+    m_select = 0;
 }
 
 GameResultTask::~GameResultTask()
 {
     delete mp_result;
-    delete mp_playAgain;
-    delete mp_titleBtn;
+    delete mp_restart;
+    delete mp_exit;
+    delete mp_marker;
 }
 
 void GameResultTask::Update()
 {
-    if (PUSH(CInput::eMouseL))
+    // 上
+    if (PUSH(CInput::eUp))
     {
-        // ������x�v���C
-        if (m_select == 0)
+        m_select--;
+
+        if (m_select < 0)
+            m_select = 1;
+    }
+
+    // 下
+    if (PUSH(CInput::eDown))
+    {
+        m_select++;
+
+        if (m_select > 1)
+            m_select = 0;
+    }
+
+    // 決定
+    if (PUSH(CInput::eButton10))
+    {
+        switch (m_select)
         {
+        case 0: // リスタート
+
+            //フラッグリセット
+            g_isGameResult = false;
+
+            // フィールド生成
             g_field = new Field();
 
+            // プレイヤー生成
             g_player = new Player(
                 CVector3D(SCREEN_WIDTH * 0.5f, 0.0f, 0.0f));
 
+            g_player->SetField(g_field);
+
+            // 敵マネージャー生成
             EnemyManager::Instance();
 
-            Timer::Start();
+            // スコアリセット
+            // Score::Reset();
 
             Kill();
-        }
+            break;
 
-        // �^�C�g����
-        if (m_select == 1)
-        {
-            new TitleTask();
-
-            Kill();
+        case 1: // ゲーム終了
+            exit(0);
+            break;
         }
     }
 }
@@ -67,11 +98,20 @@ void GameResultTask::Render()
     mp_result->SetPos(0, 0);
     mp_result->Draw();
 
-    mp_playAgain->Draw();
-    mp_titleBtn->Draw();
+    int x = 700;
+    int y = 450;
+    int space = 120;
 
-    int min = m_clearTime / 60;
-    int sec = m_clearTime % 60;
+    mp_restart->SetPos(x, y);
+    mp_restart->Draw();
 
-    DebugPrint::Print("Clear Time %d:%02d", min, sec);
+    mp_exit->SetPos(x, y + space);
+    mp_exit->Draw();
+
+    //マーカー
+    int markerX = x - 120;
+    int markerY = y + space * m_select;
+
+    mp_marker->SetPos(markerX, markerY);
+    mp_marker->Draw();
 }

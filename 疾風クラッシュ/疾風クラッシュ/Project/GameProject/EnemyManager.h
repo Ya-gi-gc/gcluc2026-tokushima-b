@@ -10,6 +10,10 @@ public:
 	// インスタンス取得
 	static EnemyManager* Instance();
 
+	static void Destroy();
+
+	void KillAllEnemies();
+
 	// 敵をリストに追加
 	void Add(EnemyBase* enemy);
 	// 敵をリストから取り除く

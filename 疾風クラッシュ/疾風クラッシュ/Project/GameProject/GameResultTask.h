@@ -1,21 +1,20 @@
 #pragma once
 #include "Task.h"
 
-class CImage;
-
 class GameResultTask : public Task
 {
 private:
 
-    int m_clearTime;
     int m_select;
 
-    CImage* mp_result;
-    CImage* mp_playAgain;
+    CImage* mp_result; // ‰æ‘œ
+    CImage* mp_restart;
     CImage* mp_titleBtn;
+    CImage* mp_exit;
+    CImage* mp_marker;
+
 
 public:
-
     GameResultTask();
     ~GameResultTask();
 

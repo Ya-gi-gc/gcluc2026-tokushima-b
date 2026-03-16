@@ -9,6 +9,7 @@ EnemyBase::EnemyBase()
 
 EnemyBase::EnemyBase(const CVector3D& pos)
 	: CharaBase(pos)
+	,m_hitRange(50,50,50)
 {
 	// 敵の管理クラスのリストに自身を追加
 	EnemyManager::Instance()->Add(this);

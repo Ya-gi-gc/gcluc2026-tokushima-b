@@ -1,5 +1,6 @@
 #pragma once
 #include "CharaBase.h"
+#include "Field.h"
 
 class Player : public CharaBase
 {
@@ -13,6 +14,8 @@ public:
 	void Update() override;
 	// 描画処理
 	void Render() override;
+	//スクロール
+	void SetField(Field* f) { m_field = f; }
 
 private:
 	// 状態
@@ -36,6 +39,8 @@ private:
 	void StateAttack();
 	// 死亡時の更新処理
 	void StateDeath();
+
+	Field* m_field = nullptr;
 
 	// アニメーションの種類
 	enum class EAnimType

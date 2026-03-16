@@ -1,9 +1,10 @@
-#include "TitleTask.h"
+﻿#include "TitleTask.h"
 #include "DebugPrint.h"
 #include "Field.h"
 #include "Player.h"
 #include "EnemyManager.h"
 #include "Timer.h"
+#include "GameExplain.h"
 
 
 extern Field* g_field;
@@ -12,52 +13,102 @@ extern Player* g_player;
 TitleTask::TitleTask()
     :Task(0)
 {
-    mp_title = CImage::CreateImage("smp1_title.png");
-    mp_start = CImage::CreateImage("haikei.png");
-    //mp_explain = CImage::CreateImage("field.png");
+    mp_title = CImage::CreateImage("Title.png");
 
-    mp_start->SetPos(600, 400);
-    //mp_explain->SetPos(600, 500);
+    mp_start = CImage::CreateImage("gamestart.png");
+    mp_explain = CImage::CreateImage("gameset.png");
+    mp_exit = CImage::CreateImage("exitgame.png");
+
+    mp_marker = CImage::CreateImage("テッポウウオ.png");
+
+    m_select = 0;
 }
 
 TitleTask::~TitleTask()
 {
     delete mp_title;
     delete mp_start;
-    //delete mp_explain;
+    delete mp_explain;
+    delete mp_exit;
+    delete mp_marker;
 }
 
 void TitleTask::Update()
 {
-    if (PUSH(CInput::eMouseL))
+    // 上
+    if (PUSH(CInput::eUp))
     {
-        // Game Start
-        g_field = new Field();
+        m_select--;
 
-        g_player = new Player(
-            CVector3D(SCREEN_WIDTH * 0.15f, 0.0f, 0.0f));
+        if (m_select < 0)
+            m_select = 2;
+    }
 
-        EnemyManager::Instance();
+    // 下
+    if (PUSH(CInput::eDown))
+    {
+        m_select++;
 
-        //�^�C�}�[�쓮
-        Timer::Start();
+        if (m_select > 2)
+            m_select = 0;
+    }
 
-        Kill();
-
-        /*
-        // Explain�N���b�N
-        if (IsExplainButton())
+    // 決定
+    if (PUSH(CInput::eButton10))
+    {
+        switch (m_select)
         {
-            DebugPrint::Print("Game Explain");
-        }*/
+        case 0: // Game Start
+            g_field = new Field();
+
+            g_player = new Player(
+                CVector3D(SCREEN_WIDTH * 0.5f, 0.0f, 0.0f));
+
+            g_player->SetField(g_field);
+
+            EnemyManager::Instance();
+
+            Timer::Start();
+
+            Kill();
+            break;
+
+        case 1: // Explain
+            new GameExplainTask();
+            Kill();
+            break;
+
+        case 2: // Exit
+            exit(0);
+            break;
+        }
     }
 }
 
 void TitleTask::Render()
 {
+    // タイトル
     mp_title->SetPos(0, 0);
     mp_title->Draw();
 
+    int x = 700;
+    int y = 400;
+    int space = 120;
+
+    // Startボタン
+    mp_start->SetPos(700, 400);
     mp_start->Draw();
-    //mp_explain->Draw();
+
+    mp_explain->SetPos(x, y + space);
+    mp_explain->Draw();
+
+    mp_exit->SetPos(x, y + space * 2);
+    mp_exit->Draw();
+
+    // マーカー
+    int markerX = x - 100;
+    int markerY = y + space * m_select;
+
+    mp_marker->SetPos(markerX, markerY);
+    mp_marker->Draw();
 }

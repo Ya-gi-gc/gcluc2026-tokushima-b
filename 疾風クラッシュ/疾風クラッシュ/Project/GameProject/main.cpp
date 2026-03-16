@@ -43,7 +43,10 @@ void Init()
 	CInput::SetButton(0, CInput::eButton2, 'X');
 	CInput::SetButton(0, CInput::eButton3, 'C');
 	CInput::SetButton(0, CInput::eButton4, 'V');
-	CInput::SetButton(0, CInput::eButton14, 'W');
+	CInput::SetButton(0, CInput::eButton6, 'B');
+	CInput::SetButton(0, CInput::eButton7, 'Z');
+
+	CInput::SetButton(0, CInput::eButton14, 'A');
 	CInput::SetButton(0, CInput::eButton15, 'S');
 	CInput::SetButton(0, CInput::eButton16, 'D');
 	CInput::SetButton(0, CInput::eButton5, VK_SPACE);

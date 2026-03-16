@@ -16,6 +16,7 @@
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="GameExplain.cpp" />
     <ClCompile Include="GameResultTask.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="GameExplain.h" />
     <ClInclude Include="GameResultTask.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Log.h" />
