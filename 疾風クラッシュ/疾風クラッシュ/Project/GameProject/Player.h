@@ -55,4 +55,10 @@ private:
 	CImage* mp_image;	// プレイヤーの画像
 
 	float m_moveSpeedY;	// Y軸（高さ）の移動速度
+
+	int m_life = 3;          // ライフ
+	float m_invincible = 0;  // 無敵時間
+	int blinkTimer = 0;      // 点滅用タイマー
+	bool blink = true;       // 点滅状態
+	CImage* mp_heart = nullptr; // ハート画像
 };

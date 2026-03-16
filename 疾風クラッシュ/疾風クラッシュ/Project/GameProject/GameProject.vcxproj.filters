@@ -14,6 +14,8 @@
     <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="TitleTask.cpp" />
+    <ClCompile Include="GameResultTask.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Global.h" />
@@ -29,6 +31,8 @@
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="TitleTask.h" />
+    <ClInclude Include="GameResultTask.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="タイトル">

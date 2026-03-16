@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "EnemyManager.h"
 #include "EnemyBase.h"
+#include "GameResultTask.h"
 
 #define CHIP_SIZE 384		// 1コマのサイズ
 #define CENTER_POS CVector2D(192.0f, 328.0f)	// 中心座標
@@ -78,6 +79,7 @@ Player::Player(const CVector3D& pos)
 	);
 	mp_image->ChangeAnimation((int)EAnimType::Idle);
 	mp_image->SetCenter(CENTER_POS);
+	mp_heart = CImage::CreateImage("yuusya.png");
 }
 
 // デストラクタ
@@ -234,6 +236,41 @@ void Player::StateDeath()
 // 更新処理
 void Player::Update()
 {
+	// ① 無敵時間減少
+	if (m_invincible > 0)
+	{
+		m_invincible -= CFPS::GetDeltaTime();
+		blinkTimer++;
+		if (blinkTimer % 5 == 0)
+		{
+			blink = !blink; // 点滅切り替え
+		}
+	}
+	else
+	{
+		blink = true;
+	}
+
+	// ② 敵との当たり判定
+	EnemyBase* enemy = EnemyManager::Instance()->GetNearEnemy(m_pos, CVector3D(50, 50, 50));
+
+	if (enemy != nullptr && m_invincible <= 0)
+	{
+		m_life--;          // ライフ減
+		m_invincible = 2.0f; // 無敵時間2秒
+		blinkTimer = 0;       // 点滅リセット
+
+		if (m_life <= 0)
+		{
+			ChangeState(EState::Death); // ライフ0で死亡
+			
+			new GameResultTask();  // ← リザルト画面生成
+			Kill();                // ← プレイヤー削除
+			return;
+		}
+	}
+
+
 	// 現在の状態に合わせて、処理を切り替える
 	switch (m_state)
 	{
@@ -265,5 +302,16 @@ void Player::Update()
 // 描画処理
 void Player::Render()
 {
-	mp_image->Draw();
+	// 点滅表示
+	if (blink)
+	{
+		mp_image->Draw();
+	}
+
+	// ハート描画（1枚を3回）
+	for (int i = 0; i < m_life; i++)
+	{
+		mp_heart->SetPos(CVector2D(50 + i * 60, 50));
+		mp_heart->Draw();
+	}
 }

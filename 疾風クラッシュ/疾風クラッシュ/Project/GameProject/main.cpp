@@ -3,11 +3,14 @@
 #include "TaskManager.h"
 #include "EnemyManager.h"
 #include "Timer.h"
+#include "TitleTask.h"
+
 
 //--------------------------------------------
 //グローバル変数領域
 //--------------------------------------------
-
+Field* g_field = nullptr;
+Player* g_player = nullptr;
 
 void MainLoop()
 {
@@ -65,6 +68,7 @@ void Init()
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
 
+	/*
 	// フィールドを生成
 	new Field();
 
@@ -74,9 +78,13 @@ void Init()
 
 	// エネミー管理クラスを生成
 	EnemyManager::Instance();
-	
+	*/
+
 	//タイマースタート
-	Timer::Start();
+	//Timer::Start();
+
+	//タイトル生成
+	new TitleTask();
 }
 
 
