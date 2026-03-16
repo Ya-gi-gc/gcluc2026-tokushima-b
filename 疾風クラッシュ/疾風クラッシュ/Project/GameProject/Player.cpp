@@ -4,6 +4,11 @@
 #include "GameResultTask.h"
 #include "Field.h"
 
+#include <windows.h>
+#include <mmsystem.h>
+
+#pragma comment(lib,"winmm.lib")
+
 extern Field* g_field;
 
 #define CHIP_SIZE 384	// 1コマのサイズ
@@ -165,8 +170,13 @@ void Player::StateIdle()
 	else if (COOL_TIME <= 0 && PUSH(CInput::eMouseL))
 	{
 		ChangeState(EState::Attack);
+
 		//クールタイムの設定
 		COOL_TIME = 60.0f;
+
+		//デバック用クールタイム0
+		// //COOL_TIME = 0.0f;
+
 	}
 }
 
@@ -178,6 +188,12 @@ void Player::StateJump()
 	{
 		// ステップ0：ジャンプ開始
 		case 0:
+
+			// ★ジャンプSE再生
+			mciSendString("close jump", NULL, 0, NULL);
+			mciSendString("open \"aau.mp3\" type mpegvideo alias jump", NULL, 0, NULL);
+			mciSendString("play jump", NULL, 0, NULL);
+
 			// Y軸（高さ）の移動速度にジャンプを速度を設定し、
 			// 接地状態を解除する
 			m_moveSpeedY = JUMP_SPEED;
@@ -216,6 +232,12 @@ void Player::StateAttack()
 			// 攻撃アニメーションが攻撃タイミングまで進めば
 			if (mp_image->GetIndex() >= ATTACK_INDEX)
 			{
+				// ★攻撃SE再生
+				mciSendString("close attack", NULL, 0, NULL);
+				mciSendString("open \"a.mp3\" type mpegvideo alias attack", NULL, 0, NULL);
+				mciSendString("play attack", NULL, 0, NULL);
+
+
 				// 一番近い敵にダメージを与える
 				EnemyBase* enemy = EnemyManager::Instance()->GetNearEnemy(m_pos, ATTACK_RANGE);
 				if (enemy != nullptr)
@@ -266,12 +288,22 @@ void Player::Update()
 
 	if (enemy != nullptr && m_invincible <= 0 && m_state != EState::Jump)
 	{
+		// ★ダメージSE
+		mciSendString("close damage", NULL, 0, NULL);
+		mciSendString("open \"uaa.mp3\" type mpegvideo alias damage", NULL, 0, NULL);
+		mciSendString("play damage", NULL, 0, NULL);
+
 		m_life--;          // ライフ減
 		m_invincible = 2.0f; // 無敵時間2秒
 		blinkTimer = 0;       // 点滅リセット
 
 		if (m_life <= 0)
 		{
+			// ★死亡SE再生
+			mciSendString("close death", NULL, 0, NULL);
+			mciSendString("open \"fullbazeyo.mp3\" type mpegvideo alias death", NULL, 0, NULL);
+			mciSendString("play death", NULL, 0, NULL);
+
 			ChangeState(EState::Death); // ライフ0で死亡
 			
 			g_isGameResult = true;

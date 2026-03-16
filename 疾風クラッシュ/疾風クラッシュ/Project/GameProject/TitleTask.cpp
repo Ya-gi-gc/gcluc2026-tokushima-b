@@ -6,6 +6,10 @@
 #include "Timer.h"
 #include "GameExplain.h"
 
+#include <windows.h>
+#include <mmsystem.h>
+
+#pragma comment(lib,"winmm.lib")
 
 extern Field* g_field;
 extern Player* g_player;
@@ -22,6 +26,12 @@ TitleTask::TitleTask()
     mp_marker = CImage::CreateImage("テッポウウオ.png");
 
     m_select = 0;
+
+    // MP3を開く
+    mciSendString("open \"やばいクレーマーのSPEAKI TV - みずらば【Mizu】.mp3\" type mpegvideo alias bgm", NULL, 0, NULL);
+
+    // ループ再生
+    mciSendString("play bgm repeat", NULL, 0, NULL);
 }
 
 TitleTask::~TitleTask()
