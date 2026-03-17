@@ -132,14 +132,14 @@ bool Player::UpdateMove()
 			isMove = true;
 		}
 		*/
-		// [A]キーを押している間
+		// [W]キーを押している間
 		if (HOLD(CInput::eButton14))
 		{
 			// 奥方向へ移動
 			m_pos.z -= MOVE_SPEED_Z;
 			isMove = true;
 		}
-		// []キーを押している間
+		// [S]キーを押している間
 		else if (HOLD(CInput::eButton16))
 		{
 			// 手前方向へ移動
