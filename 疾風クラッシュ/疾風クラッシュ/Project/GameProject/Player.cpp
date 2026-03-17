@@ -31,10 +31,10 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 {
 	// 待機アニメーション
 	{
-		new TexAnim[6]
+		new TexAnim[4]
 		{
-			{0, 6}, {1, 6}, {2, 6},
-			{3, 6}, {4, 6}, {5, 6}
+			{6, 10}, {7, 10}, {8, 10},
+			{9, 10},
 		},
 		6
 	},
@@ -89,7 +89,7 @@ Player::Player(const CVector3D& pos)
 	);
 	mp_image->ChangeAnimation((int)EAnimType::Idle);
 	mp_image->SetCenter(CENTER_POS);
-	mp_heart = CImage::CreateImage("yuusya.png");
+	mp_heart = CImage::CreateImage("heart.png");
 }
 
 // デストラクタ
