@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "EnemyManager.h"
 #include "TitleTask.h"
+#include "score.h"
 
 extern Field* g_field;
 extern Player* g_player;
@@ -114,4 +115,8 @@ void GameResultTask::Render()
 
     mp_marker->SetPos(markerX, markerY);
     mp_marker->Draw();
+
+    DebugPrint::Print("RESULT");
+
+    DebugPrint::Print("TIME SCORE : %d", Score::GetScore());
 }
