@@ -3,13 +3,13 @@
 
 class Log : public EnemyBase
 {
-private:
-	CImage* mp_image;
-
 public:
-	Log(const CVector3D& pos);
-	~Log();
+    Log(const CVector3D& pos);
+    ~Log();
 
-	void Update();
-	void Render();
+    void Update();
+    void Render();
+
+private:
+    CImage* mp_image;
 };

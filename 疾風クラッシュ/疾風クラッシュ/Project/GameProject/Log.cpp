@@ -1,20 +1,41 @@
 #include "Log.h"
 
-#define CHIP_SIZE 600
+//出現位置
 #define CENTER_POS CVector2D(150.0f,128.0f)
-#define ENEMY_SPEED 5.0 //敵の速度
+//丸太の速度
+#define ENEMY_SPEED 5.0f
 
+// アニメーションデータ（3コマ）
+static TexAnim logAnim[] =
+{
+    {0, 6},
+    {1, 6},
+    {2, 6}
+};
+
+static TexAnimData logAnimData[] =
+{
+    ANIMDATA(logAnim)
+};
 
 Log::Log(const CVector3D& pos)
     : EnemyBase(pos)
     , mp_image(nullptr)
 {
-    // HPを非常に大きくして死なないようにする
     m_hp = 9999;
 
     mp_image = CImage::CreateImage("log.png");
-    mp_image -> SetCenter(CENTER_POS);
-    //当たり判定　縦長なのでzは大きくしてます
+
+    mp_image->SetCenter(CENTER_POS);
+
+    mp_image->SetSize(235, 500);
+
+    // ★ アニメーション登録
+    mp_image->AttachAnimationData(logAnimData, 455, 768);
+   
+    // ★ 再生開始
+    mp_image->ChangeAnimation(0, true);
+
     m_hitRange = CVector3D(25, 0, 800000);
 }
 
@@ -26,8 +47,12 @@ Log::~Log()
 void Log::Update()
 {
     mp_image->SetPos(CalcScreenPos());
-    m_pos.x -= ENEMY_SPEED; //敵の移動
 
+    m_pos.x -= ENEMY_SPEED;
+
+    //mp_image->SetAng(0.0f);
+
+    mp_image->UpdateAnimation();
 }
 
 void Log::Render()
