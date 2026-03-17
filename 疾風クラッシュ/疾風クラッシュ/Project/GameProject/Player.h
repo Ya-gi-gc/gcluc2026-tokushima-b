@@ -48,7 +48,9 @@ private:
 		Idle,	// ‘Ò‹@
 		Move,	// ˆÚ“®
 		Death,	// €–S
-		Attack,	// UŒ‚
+		Attack, // UŒ‚
+		Jump,   //ƒWƒƒƒ“ƒv
+        
 
 		Num,
 	};

@@ -31,12 +31,12 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 {
 	// 待機アニメーション
 	{
-		new TexAnim[6]
+		new TexAnim[4]
 		{
-			{0, 6}, {1, 6}, {2, 6},
-			{3, 6}, {4, 6}, {5, 6}
-		},
-		6
+			{6, 10}, {7, 10}, {8, 10},
+			{9, 10}
+	     },
+		4
 	},
 	// 移動アニメーション
 	{
@@ -68,6 +68,17 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 		},
 		3
 	},
+	//ジャンプアニメーション
+   {
+	new TexAnim[4]
+	{
+		{6, 6},
+		{7, 6},
+		{8, 6},
+		{9, 6},
+	},
+    4
+	},
 };
 
 
@@ -89,7 +100,7 @@ Player::Player(const CVector3D& pos)
 	);
 	mp_image->ChangeAnimation((int)EAnimType::Idle);
 	mp_image->SetCenter(CENTER_POS);
-	mp_heart = CImage::CreateImage("yuusya.png");
+	mp_heart = CImage::CreateImage("heart.png");
 }
 
 // デストラクタ
@@ -139,7 +150,7 @@ bool Player::UpdateMove()
 			m_pos.z -= MOVE_SPEED_Z;
 			isMove = true;
 		}
-		// [S]キーを押している間
+		// [A]キーを押している間
 		else if (HOLD(CInput::eButton16))
 		{
 			// 手前方向へ移動
@@ -189,7 +200,7 @@ void Player::StateJump()
 		// ステップ0：ジャンプ開始
 		case 0:
 
-			// ★ジャンプSE再生
+			// ジャンプSE再生
 			mciSendString("close jump", NULL, 0, NULL);
 			mciSendString("open \"aau.mp3\" type mpegvideo alias jump", NULL, 0, NULL);
 			mciSendString("play jump", NULL, 0, NULL);
@@ -198,6 +209,7 @@ void Player::StateJump()
 			// 接地状態を解除する
 			m_moveSpeedY = JUMP_SPEED;
 			m_isGrounded = false;
+
 			m_stateStep++;
 
 			break;
@@ -288,7 +300,7 @@ void Player::Update()
 
 	if (enemy != nullptr && m_invincible <= 0 && m_state != EState::Jump)
 	{
-		// ★ダメージSE
+		// ダメージSE
 		mciSendString("close damage", NULL, 0, NULL);
 		mciSendString("open \"uaa.mp3\" type mpegvideo alias damage", NULL, 0, NULL);
 		mciSendString("play damage", NULL, 0, NULL);
@@ -361,7 +373,7 @@ void Player::Render()
 	// ハート描画（1枚を3回）
 	for (int i = 0; i < m_life; i++)
 	{
-		mp_heart->SetPos(CVector2D(50 + i * 60, 50));
+		mp_heart->SetPos(CVector2D(40 + i * 60, 90));
 		mp_heart->Draw();
 	}
 }
