@@ -4,6 +4,7 @@
 #include "EnemyManager.h"
 #include "Timer.h"
 #include "TitleTask.h"
+#include "score.h"
 
 
 //--------------------------------------------
@@ -21,6 +22,8 @@ void MainLoop()
 
 	Timer::Update();
 
+	Score::Update();
+
 	//タスクリストに登録されたタスクを全て更新
 	TaskManager::Instance()->Update();
 
@@ -32,6 +35,8 @@ void MainLoop()
 }
 void Init()
 {
+	Score::Init();
+
 	std::srand((unsigned int)std::time(nullptr));
 
 	CFPS::SetFPS(60);

@@ -1,5 +1,6 @@
 #include "Slime.h"
 #include "EnemyManager.h"
+#include "score.h"
 
 #define CHIP_SIZE 256		// 1コマのサイズ
 #define CENTER_POS CVector2D(128.0f, 184.0f)	// 中心座標
@@ -64,6 +65,8 @@ Slime::~Slime()
 // 死亡処理
 void Slime::Death()
 {
+	Score::EnemyDown();
+
 	// 死亡状態へ移行
 	ChangeState(EState::Death);
 	//敵マネージャーから削除
