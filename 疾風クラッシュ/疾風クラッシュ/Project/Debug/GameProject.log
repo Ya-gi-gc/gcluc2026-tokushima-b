@@ -1,6 +1,4 @@
 ﻿  main.cpp
-  Slime.cpp
 \main.cpp(1,1): error C1083: ソース ファイルを開けません。'main.cpp':No such file or directory
   (ソース ファイル '/main.cpp' をコンパイルしています)
   
-  コードを生成中...
