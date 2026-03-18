@@ -301,7 +301,7 @@ void Player::Update()
 		{
 			// š€–SSEÄ¶
 			mciSendString("close death", NULL, 0, NULL);
-			mciSendString("open \"fullbazeyo.mp3\" type mpegvideo alias death", NULL, 0, NULL);
+			mciSendString("open \"sibou.mp3\" type mpegvideo alias death", NULL, 0, NULL);
 			mciSendString("play death", NULL, 0, NULL);
 
 			ChangeState(EState::Death); // ƒ‰ƒCƒt0‚Å€–S

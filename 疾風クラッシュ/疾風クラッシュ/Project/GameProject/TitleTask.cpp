@@ -28,7 +28,7 @@ TitleTask::TitleTask()
     m_select = 0;
 
     // MP3を開く
-    mciSendString("open \"やばいクレーマーのSPEAKI TV - みずらば【Mizu】.mp3\" type mpegvideo alias bgm", NULL, 0, NULL);
+    mciSendString("open \"Title.mp3\" type mpegvideo alias bgm", NULL, 0, NULL);
 
     // ループ再生
     mciSendString("play bgm repeat", NULL, 0, NULL);
