@@ -104,8 +104,8 @@ void GameResultTask::Render()
     mp_result->SetPos(0, 0);
     mp_result->Draw();
 
-    int x = 700;
-    int y = 450;
+    int x = 450;
+    int y = 300;
     int space = 120;
 
     mp_restart->SetPos(x, y);
