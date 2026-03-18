@@ -286,7 +286,8 @@ void Player::Update()
 	// ② 敵との当たり判定
 	EnemyBase* enemy = EnemyManager::Instance()->GetNearEnemy(m_pos, CVector3D(50, 50, 50));
 
-	if (enemy != nullptr && m_invincible <= 0 && m_state != EState::Jump)
+	//敵と当たった時にジャンプをしているならダメージは受けない　デバック用自爆ボタン[Q]
+	if (enemy != nullptr && m_invincible <= 0 && m_state != EState::Jump || HOLD(CInput::eButton17))
 	{
 		// ★ダメージSE
 		mciSendString("close damage", NULL, 0, NULL);
