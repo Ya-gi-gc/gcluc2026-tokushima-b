@@ -5,6 +5,7 @@
 #include "EnemyManager.h"
 #include "TitleTask.h"
 #include "score.h"
+#include "Timer.h"
 
 extern Field* g_field;
 extern Player* g_player;
@@ -14,6 +15,9 @@ extern bool g_isGameResult;
 GameResultTask::GameResultTask()
     : Task(0)
 {
+    Score::Stop();
+    Timer::Stop();
+
     mp_result = CImage::CreateImage("Clear.png");
 
     // 敵削除
@@ -41,6 +45,7 @@ GameResultTask::~GameResultTask()
 
 void GameResultTask::Update()
 {
+
     // 上
     if (PUSH(CInput::eUp))
     {
@@ -119,4 +124,9 @@ void GameResultTask::Render()
     DebugPrint::Print("RESULT");
 
     DebugPrint::Print("TIME SCORE : %d", Score::GetScore());
+
+    //CREATE_FONT_F("score", "C:\\Windows\\Fonts\\magothic.ttc", 80);
+    //FONT("score")->Draw(800, 500, 1, 1, 1, "%d", Score::GetScore());
+
+    Timer::DebugPrintTime();
 }

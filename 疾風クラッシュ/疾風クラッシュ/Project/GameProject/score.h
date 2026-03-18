@@ -15,6 +15,9 @@ public:
     static int GetTime();
     static bool IsTimeUp();
 
+    static void Stop();
+    static void Start();
+
 private:
 
     static int m_totalScore;
@@ -23,6 +26,7 @@ private:
 
     static int m_timeLimit;
     static int m_frame;
+    static bool isRunning;
 };
 
 #endif

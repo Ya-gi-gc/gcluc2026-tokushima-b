@@ -6,6 +6,7 @@ int Score::m_enemyScore = 0;
 
 int Score::m_timeLimit = 30;
 int Score::m_frame = 0;
+bool Score::isRunning = true;
 
 void Score::Init()
 {
@@ -19,6 +20,8 @@ void Score::Init()
 
 void Score::Update()
 {
+    if (!isRunning) return;
+
     m_frame++;
 
     if (m_frame >= 60)
@@ -36,6 +39,8 @@ void Score::Update()
 
 void Score::EnemyDown()
 {
+    if (!isRunning) return;
+
     m_enemyScore += 10;
     m_totalScore += 10;
 }
@@ -53,4 +58,14 @@ int Score::GetTime()
 bool Score::IsTimeUp()
 {
     return (m_timeLimit <= 0);
+}
+
+void Score::Stop()
+{
+    isRunning = false;
+}
+
+void Score::Start()
+{
+    isRunning = true;
 }
