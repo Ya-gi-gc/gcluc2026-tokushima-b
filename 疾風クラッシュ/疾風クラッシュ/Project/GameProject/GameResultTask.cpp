@@ -123,10 +123,11 @@ void GameResultTask::Render()
 
     DebugPrint::Print("RESULT");
 
+
     DebugPrint::Print("TIME SCORE : %d", Score::GetScore());
 
-    //CREATE_FONT_F("score", "C:\\Windows\\Fonts\\magothic.ttc", 80);
-    //FONT("score")->Draw(800, 500, 1, 1, 1, "%d", Score::GetScore());
+    CREATE_FONT_F("score", "C:\\Windows\\Fonts\\magothic.ttc", 80);
+    FONT("score")->Draw(640, 360, 1, 1, 1, "%d", Score::GetScore());
 
     Timer::DebugPrintTime();
 }

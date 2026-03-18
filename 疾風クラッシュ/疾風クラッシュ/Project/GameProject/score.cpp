@@ -4,7 +4,7 @@ int Score::m_totalScore = 0;
 int Score::m_timeScore = 0;
 int Score::m_enemyScore = 0;
 
-int Score::m_timeLimit = 30;
+int Score::m_timeLimit = 100;
 int Score::m_frame = 0;
 bool Score::isRunning = true;
 
@@ -14,7 +14,7 @@ void Score::Init()
     m_timeScore = 0;
     m_enemyScore = 0;
 
-    m_timeLimit = 30;
+    m_timeLimit = 100;
     m_frame = 0;
 }
 
