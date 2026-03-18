@@ -36,7 +36,7 @@ TexAnimData Player::ANIM_DATA[(int)EAnimType::Num] =
 			{6, 10}, {7, 10}, {8, 10},
 			{9, 10},
 		},
-		6
+		4
 	},
 	// 移動アニメーション
 	{
@@ -139,7 +139,7 @@ bool Player::UpdateMove()
 			m_pos.z -= MOVE_SPEED_Z;
 			isMove = true;
 		}
-		// [S]キーを押している間
+		// [A]キーを押している間
 		else if (HOLD(CInput::eButton16))
 		{
 			// 手前方向へ移動
@@ -361,7 +361,7 @@ void Player::Render()
 	// ハート描画（1枚を3回）
 	for (int i = 0; i < m_life; i++)
 	{
-		mp_heart->SetPos(CVector2D(50 + i * 60, 50));
+		mp_heart->SetPos(CVector2D(30 + i * 60, 80));
 		mp_heart->Draw();
 	}
 }

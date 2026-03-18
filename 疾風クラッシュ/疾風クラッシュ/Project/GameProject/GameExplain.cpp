@@ -22,8 +22,8 @@ GameExplainTask::~GameExplainTask()
 
 void GameExplainTask::Update()
 {
-    // Zキー → ゲームスタート
-    if (PUSH(CInput::eButton7))
+    // Dキー → ゲームスタート
+    if (PUSH(CInput::eButton15))
     {
         g_field = new Field();
 
@@ -39,7 +39,7 @@ void GameExplainTask::Update()
         Kill();
     }
 
-    // Bキー → タイトル
+    // Sキー → タイトル
     if (PUSH(CInput::eButton6))
     {
         new TitleTask();

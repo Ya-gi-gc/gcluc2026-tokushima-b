@@ -101,12 +101,12 @@ void TitleTask::Render()
     mp_title->SetPos(0, 0);
     mp_title->Draw();
 
-    int x = 700;
-    int y = 400;
+    int x = 450;
+    int y = 300;
     int space = 120;
 
     // Startボタン
-    mp_start->SetPos(700, 400);
+    mp_start->SetPos(x, y);
     mp_start->Draw();
 
     mp_explain->SetPos(x, y + space);

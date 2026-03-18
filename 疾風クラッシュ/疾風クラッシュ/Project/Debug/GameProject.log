@@ -1,42 +1,7 @@
-﻿  CharaBase.cpp
-  DebugPrint.cpp
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\DebugPrint.cpp(49,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  EnemyBase.cpp
-  EnemyManager.cpp
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\EnemyManager.cpp(102,25): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\EnemyManager.cpp(104,25): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Field.cpp
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\Field.cpp(45,23): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\Field.cpp(48,33): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  GameExplain.cpp
-  GameResultTask.cpp
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\GameResultTask.cpp(111,27): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\GameResultTask.cpp(111,24): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\GameResultTask.cpp(114,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\GameResultTask.cpp(114,21): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\GameResultTask.cpp(121,32): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\GameResultTask.cpp(121,23): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Log.cpp
-  ObjectBase.cpp
-  Player.cpp
+﻿  Player.cpp
 C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\Player.cpp(364,33): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Slime.cpp
-  Task.cpp
-  TaskManager.cpp
-  Timer.cpp
-  TitleTask.cpp
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\TitleTask.cpp(112,29): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\TitleTask.cpp(112,24): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\TitleTask.cpp(115,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\TitleTask.cpp(115,21): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\TitleTask.cpp(122,32): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\TitleTask.cpp(122,23): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  main.cpp
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\main.cpp(117,42): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\GameProject\main.cpp(117,39): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  score.cpp
-  コードを生成中...
 GLFW.lib(init.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(init.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+  glew.lib(glew.obj) : MSIL .netmodule または /GL を伴ってコンパイルされたモジュールが見つかりました。/LTCG を使用して再開始してください。リンカーのパフォーマンスを向上させるためには、コマンドラインに /LTCG を追加してください。
 GLFW.lib(window.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(window.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 GLFW.lib(input.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(input.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 GLFW.lib(context.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(context.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
@@ -50,7 +15,6 @@ GLFW.lib(win32_tls.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(win32_tl
 GLFW.lib(win32_joystick.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(win32_joystick.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 GLFW.lib(wgl_context.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(wgl_context.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 GLFW.lib(egl_context.obj) : warning LNK4099: PDB 'GLFW.pdb' が 'GLFW.lib(egl_context.obj)' で、または 'C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Game\GLFW.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-  glew.lib(glew.obj) : MSIL .netmodule または /GL を伴ってコンパイルされたモジュールが見つかりました。/LTCG を使用して再開始してください。リンカーのパフォーマンスを向上させるためには、コマンドラインに /LTCG を追加してください。
 LINK : warning LNK4075: /INCREMENTAL は /LTCG の指定によって無視されます。
      ライブラリ C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\/../Game/GameProject.lib とオブジェクト C:\Users\asahi\Documents\GitHub\gcluc2026-tokushima-b\疾風クラッシュ\疾風クラッシュ\Project\/../Game/GameProject.exp を作成中
 LINK : warning LNK4098: defaultlib 'LIBCMT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
